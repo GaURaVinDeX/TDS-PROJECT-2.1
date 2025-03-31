@@ -4,7 +4,7 @@ import os
 from typing import Optional
 from app.utils.openai_client import get_openai_response
 from app.utils.file_handler import save_upload_file_temporarily
-import uvicorn
+
 # Import the functions you want to test directly
 from app.utils.functions import *
 
@@ -19,13 +19,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
-def read_root():
-    return {"message": "FastAPI running on Vercel"}
-
-# Vercel needs this handler
-def handler(event, context):
-    return app
 
 @app.post("/api/")
 async def process_question(
